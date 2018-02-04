@@ -1,0 +1,70 @@
+{
+	"plugin_id": "ic3116w",
+	"name_fr": "Edimax IC-3116W",
+	"icon": "ic3116w.png",
+	"version": "1.0",
+	"creation_date": "2017-09-29",
+	"modification_date": "2017-09-29",
+	"author": "Influman",
+	"description_fr": "Contrôlez la <a target='_blank' href='http://www.edimax.fr/edimax/merchandise/merchandise_detail/data/edimax/fr/home_network_cameras_indoor_fixed/ic-3116w/'>caméra IP Edimax IC-3116W</a> via son API",
+	"description_en": "",
+	"description_es": "",
+	"description_it": "",
+	"description_de": "",
+	"forum_link": "http://forum.eedomus.com/viewtopic.php?f=25&t=2069&p=18723",
+	"parameters":
+  [
+		{
+			"parameter": "IP", 
+			"description": "Adresse IP locale de votre caméra",
+			"xtype": "textfield",
+			"default_value": "192.168.0.",
+			"field": "width:130, allowBlank:false, maskRe:/[0-9.]/, regex:/^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/, regexText:'Adresse IP invalide [0-255].[0-255].[0-255].[0-255]'"
+    },
+{
+			"parameter": "LOGIN", 
+			"description": "Login",
+			"xtype": "textfield",
+			"field": "width:130, allowBlank:false"
+    },
+{
+			"parameter": "PWD", 
+			"description": "Password",
+			"xtype": "textfield",
+			"field": "width:130, allowBlank:false"
+    }     
+  ],
+	"devices":
+  [
+		{
+			"device_id": "controles",
+			"module_id": "41",
+			"type": "http",
+			"name_fr": "Contrôles Caméra IC-3116W",
+			"icon": "ic3116w.png",
+			"utilisation_id": "43",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.IP",
+				"VAR2": "plugin.parameters.LOGIN",
+				"VAR3": "plugin.parameters.PWD",
+				"value_type": "list",
+				"ignore_errors": 3,
+				"RAW_URL": "",
+				"RAW_XPATH": "",
+				"POLLING": "0"
+			},
+			"values":
+			[
+				{ "value": "1", "description": "Détection activée", "icon": "camera_intimacy_off.png", "http_url": "http://[VAR2]:[VAR3]@[VAR1]/camera-cgi/admin/param.cgi", "http_type": "GET",  "http_params": "?action=update&MD_enable=1&MD_FTPenable=1&SMTPenable=0" },
+				{ "value": "2", "description": "Détection désactivée", "icon": "camera_intimacy_on.png", "http_url": "http://[VAR2]:[VAR3]@[VAR1]/camera-cgi/admin/param.cgi", "http_type": "GET",  "http_params": "?action=update&MD_enable=0" },
+				{ "value": "3", "description": "Allumer LED", "icon": "camera.png", "http_url": "http://[VAR2]:[VAR3]@[VAR1]/camera-cgi/admin/param.cgi", "http_type": "GET",  "http_params": "?action=update&LED_enable=1" },
+				{ "value": "4", "description": "Eteindre LED", "icon": "camera.png", "http_url": "http://[VAR2]:[VAR3]@[VAR1]/camera-cgi/admin/param.cgi", "http_type": "GET",  "http_params": "?action=update&LED_enable=0" },
+				{ "value": "5", "description": "Définir FTP", "icon": "camera.png", "http_url": "http://[VAR2]:[VAR3]@[VAR1]/camera-cgi/admin/param.cgi", "http_type": "GET",  "http_params": "?action=update&FTP_server=camera.eedomus.com&FTP_username=cameraXXXXXX&FTP_password=XXXXXXX&FTP_port=21&FTP_path=&FTP_passive=1" }
+			]
+    }
+  ]
+}
+
+
+
